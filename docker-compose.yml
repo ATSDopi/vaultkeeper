@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  vaultkeeper-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5174:5174"
+    environment:
+      - VITE_API_URL=http://localhost:3001
+
+  vaultkeeper-sync:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
+      - PORT=3001
+    volumes:
+      - sync-data:/app/server
+    restart: unless-stopped
+
+volumes:
+  sync-data:
