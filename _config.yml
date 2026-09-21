@@ -1,0 +1,4 @@
+title: vaultkeeper
+description: Local-first, zero-knowledge password manager — AES-256-GCM + PBKDF2 encryption, optional self-hosted sync (React, TypeScript)
+plugins:
+  - jekyll-sitemap
